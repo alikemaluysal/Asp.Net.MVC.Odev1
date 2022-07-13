@@ -1,0 +1,68 @@
+﻿@using Deneme.Models
+
+@model Deneme.Models.Uye
+@{
+    string mesaj = ViewBag.AdSoyadMesaj;
+    bool isLogged = false;
+    string navbarMesaj = "";
+    //if (ViewBag.IsLogged != null)
+    //{
+    //    isLogged = (bool)ViewBag.IsLogged;
+    //}
+
+    if (Session["IsLogged"] != null)
+    {
+        isLogged = (bool)Session["IsLogged"];
+    }
+
+    if (ViewBag.NavbarMesaj != null)
+    {
+        navbarMesaj = ViewBag.NavbarMesaj;
+    }
+
+}
+
+
+@{
+
+    //if (Session["Oturum"] == null && (bool)ViewBag.IsLogged)
+    if (!isLogged)
+    {
+        <div class="d-flex">
+            <button class="btn btn-outline-success me-2" type="button" onclick="window.location.href='/Uye/GirisYap'">Giriş Yap</button>
+            <button class="btn btn-outline-success" type="button" onclick="window.location.href='/Uye/UyeOl'">Üye Ol</button>
+        </div>
+
+
+
+    }
+
+    else
+    {
+        @*<div class="d-flex">
+                @{<div class="btn-outline-success text-success">@((Uye)Session["Oturum"]).Ad</div>} @{<div class="btn-outline-success text-success">@((Uye)Session["Oturum"]).Soyad</div> }
+                <button class="btn btn-outline-success" type="button" onclick="window.location.href='/Uye/SessionSil/'">Çıkış Yap</button>
+            </div>*@
+
+        <div class="d-flex">
+
+
+            @*<div class="me-auto mb-1 mb-lg-0 text-success me-4" >@Model.Ad  @Model.Soyad</div>*@
+
+
+
+            @*<button class="btn btn-dark text-success fw-bold me-3" type="button" onclick="window.location.href='/Uye/Profil/'">@Model.Ad  @Model.Soyad</button>*@
+
+
+
+
+            <button class="btn btn-dark text-success fw-bold me-3" type="button" onclick="window.location.href='/Uye/Profil/'">
+               @Session["Mesaj"]
+            </button>
+
+
+            <button class="btn btn-outline-success" type="button" onclick="window.location.href='/Uye/SessionSil/'">Çıkış Yap</button>
+        </div>
+    }
+}
+
